@@ -58,3 +58,31 @@ def parsea_ingrediente(ingrediente_str: str) -> Ingrediente:
     # Aquí llega la cadena ya limpia, por ejemplo "Tomate-2-ud"
     nombre, cantidad, unidad = ingrediente_str.split("-")
     return Ingrediente(nombre, float(cantidad),unidad)
+
+def ingredientes_por_unidadre(recetas: list[Receta], unidad: str | None = None )-> int:
+    lista = []
+    for e in recetas:
+        for i in e.ingredientes:
+            if unidad == None or i.unidad == unidad:
+                lista.append(i.nombre)
+    return len(set(lista))
+
+def recetas_con_ingredientes(recetas: list[Receta],conjunto : {str,str})-> list[tuple[str,int,float]]:
+    lista = []
+    lista_sin_repetidos = []
+    for e in recetas:
+        for i in e.ingredientes:
+            if i.nombre in conjunto:
+                lista.append((e.denominacion, e.calorias,e.precio))
+    for orden in lista:
+        if orden not in lista_sin_repetidos:
+            lista_sin_repetidos.append(orden)
+        
+    return lista_sin_repetidos
+
+def receta_mas_barata(recetas: list[Receta], conjunto : {str,str}, n : int| None == None)-> list[Receta]:
+            lista = []
+            n == None
+            for e in recetas:
+                
+                
